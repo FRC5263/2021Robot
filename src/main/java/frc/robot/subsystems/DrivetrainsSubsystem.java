@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
+
 public class DrivetrainsSubsystem extends SubsystemBase {
   private MecanumDrive mecanumDriveTrain;
   private DifferentialDrive differentialDriveTrain;
@@ -29,9 +30,29 @@ public class DrivetrainsSubsystem extends SubsystemBase {
   /**
    * Creates a new DrivetrainsSubsystem.
    */
-  public DrivetrainsSubsystem(MecanumDrive mecanumDriveTrain, DifferentialDrive differentialDriveTrain) {
-    mecanumDriveTrain.getClass();
+  public DrivetrainsSubsystem(Boolean usingMecanumDrive, Encoder frontRightEncoder, Encoder frontLeftEncoder, Encoder backRightEncoder, Encoder backLeftEncoder, SpeedController frontRightMotor, SpeedController frontLeftMotor, SpeedController backRightMotor, SpeedController backLeftmotor) {
+    this.backLeftEncoder = backLeftEncoder;
+    this.backRightEncoder = backRightEncoder;
+    this.frontLeftEncoder = frontLeftEncoder;
+    this.frontRightEncoder = frontRightEncoder;
+    this.frontLeftMotor = frontLeftMotor;
+    this.frontRightMotor = frontRightMotor;
+    this.backLeftMotor = backLeftMotor;
+    this.backRightMotor = backRightMotor;
+    
+    if (usingMecanumDrive == false) {
+      this.differentialDriveTrain = new DifferentialDrive(backRightMotor, backLeftmotor);
+
+      System.out.print("New Differential Drive Train Initialized");
+    } else {
+      this.mecanumDriveTrain = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+
+      System.out.print("New Mecanum Drive Train Initialized");
+    }
   }
+
+
+  
 
   @Override
   public void periodic() {
