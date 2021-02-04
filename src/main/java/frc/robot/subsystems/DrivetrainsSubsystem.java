@@ -27,10 +27,10 @@ public class DrivetrainsSubsystem extends SubsystemBase {
   private SpeedController frontLeftMotor;
   private SpeedController backRightMotor;
   private SpeedController backLeftMotor;
-  /**
-   * Creates a new DrivetrainsSubsystem.
-   */
-  public DrivetrainsSubsystem(Boolean usingMecanumDrive, Encoder frontRightEncoder, Encoder frontLeftEncoder, Encoder backRightEncoder, Encoder backLeftEncoder, SpeedController frontRightMotor, SpeedController frontLeftMotor, SpeedController backRightMotor, SpeedController backLeftmotor) {
+  /** If you are using tank or differential drive input the same variables in front left and right motors as you used for the back ones */
+  public DrivetrainsSubsystem(Boolean usingMecanumDrive, Encoder frontRightEncoder, Encoder frontLeftEncoder, Encoder backRightEncoder, Encoder backLeftEncoder, SpeedController frontRightMotor, SpeedController frontLeftMotor, SpeedController backRightMotor, SpeedController backLeftMotor) {
+    
+    
     this.backLeftEncoder = backLeftEncoder;
     this.backRightEncoder = backRightEncoder;
     this.frontLeftEncoder = frontLeftEncoder;
@@ -40,17 +40,51 @@ public class DrivetrainsSubsystem extends SubsystemBase {
     this.backLeftMotor = backLeftMotor;
     this.backRightMotor = backRightMotor;
     
+
+    // checks to see if you are using mecanum drive or tank / diffrential drive
     if (usingMecanumDrive == false) {
-      this.differentialDriveTrain = new DifferentialDrive(backRightMotor, backLeftmotor);
+      //if you are using tank / diffrential trive, a new drivetrain of that type is created
+
+      this.differentialDriveTrain = new DifferentialDrive(backRightMotor, backLeftMotor);
 
       System.out.print("New Differential Drive Train Initialized");
+    
+    
     } else {
+      // if you are using mecanum drive, a new drivetrain of that type is created
+
       this.mecanumDriveTrain = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 
       System.out.print("New Mecanum Drive Train Initialized");
     }
   }
 
+  public DrivetrainsSubsystem(Boolean usingMecanumDrive, SpeedController frontRightMotor, SpeedController frontLeftMotor, SpeedController backRightMotor, SpeedController backLeftMotor) {
+    this.frontLeftMotor = frontLeftMotor;
+    this.frontRightMotor = frontRightMotor;
+    this.backLeftMotor = backLeftMotor;
+    this.backRightMotor = backRightMotor;
+    
+
+
+
+    // checks to see if you are using mecanum drive or tank / diffrential drive
+    if (usingMecanumDrive == false) {
+      //if you are using tank / diffrential trive, a new drivetrain of that type is created
+
+      this.differentialDriveTrain = new DifferentialDrive(backRightMotor, backLeftMotor);
+
+      System.out.print("New Differential Drive Train Initialized");
+    
+    
+    } else {
+      // if you are using mecanum drive, a new drivetrain of that type is created
+
+      this.mecanumDriveTrain = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+
+      System.out.print("New Mecanum Drive Train Initialized");
+    }
+  }
 
   
 
