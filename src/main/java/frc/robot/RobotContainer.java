@@ -48,7 +48,7 @@ public class RobotContainer {
 
     DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
 
-    //private m_teleOp = new RobotControl(driveTrainA);
+    RobotControl m_teleOp = new RobotControl(drivetrainA);
     //not ready yet
 
 
@@ -81,6 +81,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
+  }
+  public Command getTeleOpCommand() {
+    return m_teleOp;
   }
 }
 
