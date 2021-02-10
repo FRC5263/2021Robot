@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DrivetrainsSubsystem;
 import frc.robot.RobotContainer;
+import frc.robot.commands.RobotControl;
 
 
 /**
@@ -95,15 +96,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    SpeedController backRightMotor = new PWMTalonSRX(1);
-    SpeedController frontRightMotor = new PWMTalonSRX(2);
-    SpeedController backLeftMotor = new PWMTalonSRX(0);
-    SpeedController frontLeftMotor = new PWMTalonSRX(3);
-
-
-
-    DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
-    
+    if (m_teleOp != null) {
+      m_teleOp.initialize();
+      SpeedController backRightMotor = new PWMTalonSRX(1);
+      SpeedController frontRightMotor = new PWMTalonSRX(2);
+      SpeedController backLeftMotor = new PWMTalonSRX(0);
+      SpeedController frontLeftMotor = new PWMTalonSRX(3);
+      DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
+      RobotControl controlingMechanum = new RobotControl(drivetrainA);
+    }
   }
 
   /**

@@ -85,6 +85,12 @@ public class DrivetrainsSubsystem extends SubsystemBase {
       System.out.print("New Mecanum Drive Train Initialized");
     }
   }
+  
+  
+  //this function is for making a mechanamDriveTrain move
+  public void driveMechanum(double horizontalSpeed, double forwardSpeed, double rotation) {
+    mecanumDriveTrain.driveCartesian(forwardSpeed, horizontalSpeed, rotation);
+  }
 
   
 

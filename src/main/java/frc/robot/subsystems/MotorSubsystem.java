@@ -10,13 +10,19 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SpeedController;
 
+
 public class MotorSubsystem extends SubsystemBase {
   
-  
+  private SpeedController motor;
+  private double scalarPower = 1.0;
 
 
-  public MotorSubsystem() {
+  public MotorSubsystem(SpeedController motor) {
+    this.motor = motor;
+  }
 
+  public void PowerMotor(double speed) {
+    motor.set(speed * scalarPower);
   }
 
   @Override

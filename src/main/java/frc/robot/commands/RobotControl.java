@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.subsystems.*;
 
 public class RobotControl extends CommandBase {
@@ -20,6 +21,7 @@ public class RobotControl extends CommandBase {
 
     DrivetrainsSubsystem driveTrain;
     Joystick controller0 = new Joystick(0);
+
 
 
 
@@ -38,11 +40,11 @@ public class RobotControl extends CommandBase {
     //left stick driving
     double ySpeed = controller0.getRawAxis(1);
     double xSpeed = controller0.getRawAxis(0);
+    double rotationSpeed = controller0.getRawAxis(4);
     controller0.setRumble(RumbleType.kLeftRumble, ySpeed);
     controller0.setRumble(RumbleType.kRightRumble, xSpeed);
-
-
-
+    driveTrain.driveMechanum(xSpeed, ySpeed, rotationSpeed);
+    
   }
 
   // Called once the command ends or is interrupted.

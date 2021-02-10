@@ -82,9 +82,6 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
-  public Command getTeleOpCommand() {
-    return m_teleOp;
-  }
 }
 
 
