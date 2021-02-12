@@ -34,28 +34,21 @@ public class RobotContainer {
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
+  private SpeedController backRightMotor = new PWMTalonSRX(1);
+  private SpeedController frontRightMotor = new PWMTalonSRX(2);
+  private SpeedController backLeftMotor = new PWMTalonSRX(0);
+  private SpeedController frontLeftMotor = new PWMTalonSRX(3);
+  private DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
+
+
+
+  private RobotControl m_teleOp = new RobotControl(drivetrainA);
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    SpeedController backRightMotor = new PWMTalonSRX(1);
-    SpeedController frontRightMotor = new PWMTalonSRX(2);
-    SpeedController backLeftMotor = new PWMTalonSRX(0);
-    SpeedController frontLeftMotor = new PWMTalonSRX(3);
-
-
-
-    DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
-
-    RobotControl m_teleOp = new RobotControl(drivetrainA);
-    //not ready yet
-
-
-
-
-
-
 
 
 
@@ -81,6 +74,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
+  }
+  public Command getTeleOpCommand() {
+    return m_teleOp;
   }
 }
 

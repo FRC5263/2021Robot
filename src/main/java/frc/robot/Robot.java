@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DrivetrainsSubsystem;
 import frc.robot.RobotContainer;
+import frc.robot.RobotContainer;
 import frc.robot.commands.RobotControl;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -77,21 +78,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-      Joystick contreollerRobot_java = new Joystick(0);
-      SpeedController backRightMotor = new PWMTalonSRX(1);
-      SpeedController frontRightMotor = new PWMTalonSRX(3);
-      SpeedController backLeftMotor = new PWMTalonSRX(4);
-      SpeedController frontLeftMotor = new PWMTalonSRX(5);
-      DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
-      RobotControl controlingMechanum = new RobotControl(drivetrainA);
-      controlingMechanum.execute();
-      if (contreollerRobot_java.getRawButtonPressed(1) == true) {
-          System.out.print("hhhhhhhhhhhhhhhhhh");
-      }
-    }
   }
 
   /**
@@ -110,17 +96,7 @@ public class Robot extends TimedRobot {
     }
     if (m_teleOp != null) {
       m_teleOp.initialize();
-      Joystick contreollerRobot_java = new Joystick(0);
-      SpeedController backRightMotor = new PWMTalonSRX(1);
-      SpeedController frontRightMotor = new PWMTalonSRX(3);
-      SpeedController backLeftMotor = new PWMTalonSRX(4);
-      SpeedController frontLeftMotor = new PWMTalonSRX(5);
-      DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
-      RobotControl controlingMechanum = new RobotControl(drivetrainA);
-      controlingMechanum.execute();
-      if (contreollerRobot_java.getRawButtonPressed(1) == true) {
-          System.out.print("hhhhhhhhhhhhhhhhhh");
-      }
+      m_teleOp = m_robotContainer.getTeleOpCommand();
     }
   }
 
@@ -129,6 +105,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    m_teleOp.execute();
   }
 
   @Override
