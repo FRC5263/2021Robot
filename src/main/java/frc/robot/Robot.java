@@ -95,8 +95,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     if (m_teleOp != null) {
-      m_teleOp.initialize();
       m_teleOp = m_robotContainer.getTeleOpCommand();
+      m_teleOp.initialize();
     }
   }
 
