@@ -34,15 +34,16 @@ public class RobotContainer {
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  private SpeedController backRightMotor = new PWMTalonSRX(1);
-  private SpeedController frontRightMotor = new PWMTalonSRX(2);
-  private SpeedController backLeftMotor = new PWMTalonSRX(0);
-  private SpeedController frontLeftMotor = new PWMTalonSRX(3);
+  private SpeedController backRightMotor = new PWMTalonSRX(5);
+  private SpeedController frontRightMotor = new PWMTalonSRX(4);
+  private SpeedController backLeftMotor = new PWMTalonSRX(3);
+  private SpeedController frontLeftMotor = new PWMTalonSRX(2);
   private DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
 
 
 
   private RobotControl m_teleOp = new RobotControl(drivetrainA);
+  //private Command m_teleOp = controling.execute();
 
 
   /**

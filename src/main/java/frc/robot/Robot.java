@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -19,19 +20,19 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.RobotControl;
 import edu.wpi.first.wpilibj.Joystick;
 
-
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to each mode, as described in the TimedRobot
+ * documentation. If you change the name of this class or the package after
+ * creating this project, you must also update the build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-  private Command m_teleOp;
   private MecanumDrive drivetrain;
+  private Command m_teleOp;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -94,8 +95,11 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
+    m_teleOp = m_robotContainer.getTeleOpCommand();
+
+
     if (m_teleOp != null) {
-      m_teleOp = m_robotContainer.getTeleOpCommand();
       m_teleOp.initialize();
     }
   }

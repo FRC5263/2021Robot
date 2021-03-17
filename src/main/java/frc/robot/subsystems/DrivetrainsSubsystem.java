@@ -47,7 +47,7 @@ public class DrivetrainsSubsystem extends SubsystemBase {
 
       this.differentialDriveTrain = new DifferentialDrive(backRightMotor, backLeftMotor);
 
-      System.out.print("New Differential Drive Train Initialized");
+      System.out.print("New Differential Drive Train Initialized\n");
     
     
     } else {
@@ -55,7 +55,7 @@ public class DrivetrainsSubsystem extends SubsystemBase {
 
       this.mecanumDriveTrain = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 
-      System.out.print("New Mecanum Drive Train Initialized");
+      System.out.print("New Mecanum Drive Train Initialized\n");
     }
   }
 

@@ -27,6 +27,7 @@ public class RobotControl extends CommandBase {
 
   public RobotControl(DrivetrainsSubsystem driveTrain) {
     this.driveTrain = driveTrain;
+    
   }
 
   // Called when the command is initially scheduled.
@@ -41,6 +42,7 @@ public class RobotControl extends CommandBase {
     double ySpeed = controller0.getRawAxis(1);
     double xSpeed = controller0.getRawAxis(0);
     double rotationSpeed = controller0.getRawAxis(4);
+    controller0.setRumble(RumbleType.kLeftRumble, 1);
     controller0.setRumble(RumbleType.kLeftRumble, ySpeed);
     controller0.setRumble(RumbleType.kRightRumble, xSpeed);
     driveTrain.driveMechanum(xSpeed, ySpeed, rotationSpeed);
