@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   private MecanumDrive drivetrain;
   private Command m_teleOp;
+  private Joystick controller = new Joystick(0);
 
   /**
    * This function is run when the robot is first started up and should be used for any
