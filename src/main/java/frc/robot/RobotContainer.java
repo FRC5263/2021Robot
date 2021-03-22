@@ -12,10 +12,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import frc.robot.commands.RobotControl;
 import frc.robot.commands.ExampleCommand;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DrivetrainsSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import frc.robot.Robot;
@@ -38,11 +36,6 @@ public class RobotContainer {
   private SpeedController frontRightMotor = new PWMTalonSRX(4);
   private SpeedController backLeftMotor = new PWMTalonSRX(3);
   private SpeedController frontLeftMotor = new PWMTalonSRX(2);
-  private DrivetrainsSubsystem drivetrainA = new DrivetrainsSubsystem(true, frontRightMotor, frontLeftMotor, backRightMotor, backLeftMotor);
-
-
-
-  private RobotControl m_teleOp = new RobotControl(drivetrainA);
   //private Command m_teleOp = controling.execute();
 
 
