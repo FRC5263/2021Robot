@@ -13,7 +13,7 @@ public class MechanumDrivetrainSubsystem extends SubsystemBase {
   private SpeedController frontLeftMotor;
   private SpeedController frontRightMotor;
   private SpeedController rearLeftMotor;
-  private SpeedController rearRightMotor;
+  private SpeedController r;
   private MecanumDrive driveTrain;
 
 
@@ -24,18 +24,19 @@ public class MechanumDrivetrainSubsystem extends SubsystemBase {
    * @param rearRightMotor the rear right motor
    * @param rearLeftMotor the rear left motor
    */
-  public MechanumDrivetrainSubsystem(SpeedController frontLeftMotor, SpeedController frontRightMotor, SpeedController rearLeftMotor, SpeedController rearRigtMotor) {
+  public MechanumDrivetrainSubsystem(SpeedController frontLeftMotor, SpeedController frontRightMotor, SpeedController rearLeftMotor, SpeedController r) {
     this.frontLeftMotor = frontLeftMotor;
     this.frontRightMotor = frontRightMotor;
-    this.rearRightMotor = rearRightMotor;
+    this.r = r;
     this.rearLeftMotor = rearLeftMotor;
 
-    this.driveTrain = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
-    System.out.print("New Mechanum Drive Train Initilized");
+    this.driveTrain = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, r);
+    System.out.print("New Mechanum Drive Train Initilized\n");
   }
-  
+
   public void DriveMechanum(double xSpeed, double ySpeed, double zRotation) {
     driveTrain.driveCartesian(ySpeed, xSpeed, zRotation);
+    System.out.print("driving");
   }
 
   @Override

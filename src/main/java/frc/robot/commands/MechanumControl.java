@@ -5,20 +5,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.*;
 
 public class MechanumControl extends CommandBase {
 
-  private MecanumDrive driveTrain;
+  private MechanumDrivetrainSubsystem driveTrain;
   private XboxController controller = new XboxController(0);
 
 
 
   
   /** Creates a new MechanumControl. */
-  public MechanumControl() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public MechanumControl(MechanumDrivetrainSubsystem driveTrain) {
+    this.driveTrain = driveTrain;
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +29,17 @@ public class MechanumControl extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    //System.out.print("sanity checks");
+    //left stick forward and backward and right stick rotation
+    double xSpeed = controller.getRawAxis(0);
+    double ySpeed = controller.getRawAxis(1);
+    double zRotation = controller.getRawAxis(4);
+    driveTrain.DriveMechanum(xSpeed, ySpeed, zRotation);
+    controller.setRumble(RumbleType.kRightRumble, 1);
+
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override

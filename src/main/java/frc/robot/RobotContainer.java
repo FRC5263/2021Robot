@@ -9,14 +9,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.MechanumControl;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.MechanumDrivetrainSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import frc.robot.Robot;
+import frc.robot.commands.*;
 
 
 /**
@@ -32,11 +36,12 @@ public class RobotContainer {
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  private SpeedController backRightMotor = new PWMTalonSRX(5);
-  private SpeedController frontRightMotor = new PWMTalonSRX(4);
-  private SpeedController backLeftMotor = new PWMTalonSRX(3);
-  private SpeedController frontLeftMotor = new PWMTalonSRX(2);
-  //private Command m_teleOp = controling.execute();
+  private SpeedController rearRightMotor = new Talon(5);
+  private SpeedController frontRightMotor = new Talon(4);
+  private SpeedController backLeftMotor = new Talon(3);
+  private SpeedController frontLeftMotor = new Talon(2);
+  private MechanumDrivetrainSubsystem mechanumDrivetrain = new MechanumDrivetrainSubsystem(frontLeftMotor, frontRightMotor, backLeftMotor, rearRightMotor);
+  private Command m_teleOp = new MechanumControl(mechanumDrivetrain);
 
 
   /**
