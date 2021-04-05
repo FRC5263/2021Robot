@@ -56,6 +56,17 @@ public class DriveTrainSubsystem extends SubsystemBase {
     System.out.print("New Dual Motor Differential Drive Train initialized");
   }
 
+  /**use this function to make a Mechanum Drive Train move */
+  public void DriveMechanum(double xSpeed, double ySpeed, double zRotation) {
+    mechanumDrivetrain.driveCartesian(ySpeed, xSpeed, zRotation);
+  }
+
+
+  /**use this function to make a Differential Drive Train move */
+  public void DriveDifferential(double leftSpeed, double rightSpeed) {
+    differentialDrivetrain.tankDrive(leftSpeed, rightSpeed);
+  }
+
 
   @Override
   public void periodic() {

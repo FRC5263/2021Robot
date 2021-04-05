@@ -13,7 +13,7 @@ public class MechanumDrivetrainSubsystem extends SubsystemBase {
   private SpeedController frontLeftMotor;
   private SpeedController frontRightMotor;
   private SpeedController rearLeftMotor;
-  private SpeedController r;
+  private SpeedController rearRightMotor;
   private MecanumDrive driveTrain;
 
 
@@ -24,10 +24,10 @@ public class MechanumDrivetrainSubsystem extends SubsystemBase {
    * @param rearRightMotor the rear right motor
    * @param rearLeftMotor the rear left motor
    */
-  public MechanumDrivetrainSubsystem(SpeedController frontLeftMotor, SpeedController frontRightMotor, SpeedController rearLeftMotor, SpeedController r) {
+  public MechanumDrivetrainSubsystem(SpeedController frontLeftMotor, SpeedController frontRightMotor, SpeedController rearLeftMotor, SpeedController rearRightMotor) {
     this.frontLeftMotor = frontLeftMotor;
     this.frontRightMotor = frontRightMotor;
-    this.r = r;
+    this.rearRightMotor = rearRightMotor;
     this.rearLeftMotor = rearLeftMotor;
 
     this.driveTrain = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, r);
