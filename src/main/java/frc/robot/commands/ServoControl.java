@@ -5,31 +5,31 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Servo;
 
-public class Servo extends CommandBase {
-  servo Servo0 = new Servo(0);
-  /** Creates a new Servo. */
-  public Servo() {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class ServoControl extends CommandBase {
+  private Servo servo0 = new Servo(0);
+
+  /** Creates a new ServoControl. */
+  public ServoControl() {
+    
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-Servo0.getAngle(0);
-Servo0.setAngle(0);
-Servo0.setAngle(90);
-Servo0.setAngle(180);
-Servo0.setAngle(270);
-Servo0.setAngle(-90);
-Servo0.setAngle(0);
-
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() { 
+    System.out.print(servo0.getAngle());
+    servo0.setAngle(0);
+    servo0.setAngle(90);
+    servo0.setAngle(180);
+    servo0.setAngle(270);
+    servo0.setAngle(-90);
+    servo0.setAngle(0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
