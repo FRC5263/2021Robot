@@ -5,11 +5,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class DifferentialControl extends CommandBase {
+public class DifferentialDriveTrainControl extends CommandBase {
+  DriveTrainSubsystem differentialDriveTrain;
+  XboxController controller0 = new XboxController(0);
+
+
   /** Creates a new DifferentialControl. */
-  public DifferentialControl() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public DifferentialDriveTrainControl(DriveTrainSubsystem differentialDriveTrain) {
+    this.differentialDriveTrain  = differentialDriveTrain;
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +25,12 @@ public class DifferentialControl extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double leftSpeed = controller0.getRawAxis(1);
+    double rightSpeed = controller0.getRawAxis(5);
+    differentialDriveTrain.DriveDifferential(leftSpeed, rightSpeed);
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override
