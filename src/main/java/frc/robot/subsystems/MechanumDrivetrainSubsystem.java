@@ -30,7 +30,7 @@ public class MechanumDrivetrainSubsystem extends SubsystemBase {
     this.rearRightMotor = rearRightMotor;
     this.rearLeftMotor = rearLeftMotor;
 
-    this.driveTrain = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, r);
+    this.driveTrain = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
     System.out.print("New Mechanum Drive Train Initilized\n");
   }
 
