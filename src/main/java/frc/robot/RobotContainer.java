@@ -21,6 +21,7 @@ import frc.robot.subsystems.MechanumDrivetrainSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import frc.robot.Robot;
 import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.Spark;
 
 
 /**
@@ -36,11 +37,11 @@ public class RobotContainer {
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  private SpeedController rearRightMotor = new Talon(5);
-  private SpeedController frontRightMotor = new Talon(4);
-  private SpeedController backLeftMotor = new Talon(3);
-  private SpeedController frontLeftMotor = new Talon(2);
-  private DriveTrainSubsystem mechanumDrivetrain = new DriveTrainSubsystem(frontLeftMotor, frontRightMotor, backLeftMotor, rearRightMotor);
+  private SpeedController rearRightMotor = new Spark(0);
+  private SpeedController frontRightMotor = new Spark(2);
+  private SpeedController backLeftMotor = new Spark(1);
+  private SpeedController frontLeftMotor = new Spark(3);
+  private DriveTrainSubsystem mechanumDrivetrain = new DriveTrainSubsystem(frontRightMotor, frontLeftMotor, rearRightMotor, backLeftMotor);
   private Command m_teleOp = new MechanumDriveTrainControl(mechanumDrivetrain);
 
 
