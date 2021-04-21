@@ -15,7 +15,6 @@ public class theRobot {
     public static String DRIVETRAIN = "drivetrain";
     private Map<String, Subsystem> subsystems = new HashMap<>();
     
-    
     /**creates a new robot */
     public void Robot(HashMap<String, Subsystem> subsystems) {
         this.subsystems.putAll(subsystems);
@@ -38,5 +37,11 @@ public class theRobot {
 
     public boolean hasSubsystem(String key) {
         return this.subsystems.containsKey(key);
+    }
+
+    public void makeRobotId(Integer jumperNum) {
+        if(jumperNum == 8) {
+                        
+        }
     }
 }
