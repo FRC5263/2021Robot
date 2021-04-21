@@ -34,7 +34,7 @@ public class MechanumDriveTrainControl extends CommandBase {
     double ySpeed = controller0.getRawAxis(1);
     double zRotation = controller0.getRawAxis(4);
     
-    mechanumDrive.DriveMechanum(xSpeed, ySpeed, zRotation);
+    mechanumDrive.DriveMechanum(xSpeed*-1, ySpeed, zRotation);
   }
 
   // Called once the command ends or is interrupted.
