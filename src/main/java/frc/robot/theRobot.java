@@ -15,9 +15,33 @@ public class theRobot {
     public static String DRIVETRAIN = "drivetrain";
     private Map<String, Subsystem> subsystems = new HashMap<>();
     
-    
     /**creates a new robot */
     public void Robot(HashMap<String, Subsystem> subsystems) {
-        
+        this.subsystems.putAll(subsystems);
+    }
+
+    /**puts a subsystem into the robot object */
+    public void addSubsystem(String key, Subsystem subsystem) {
+        this.subsystems.put(key, subsystem);
+    }
+    
+    /**locates subsytem in bot object */
+    public Subsystem getSubsystem(String key) throws Exception {
+        Subsystem subsystem = this.subsystems.get(key);
+        if(subsystem != null) {
+            return subsystem;
+        } else {
+            throw new Exception("subsystem does not exist!");
+        }
+    }
+
+    public boolean hasSubsystem(String key) {
+        return this.subsystems.containsKey(key);
+    }
+
+    public void makeRobotId(Integer jumperNum) {
+        if(jumperNum == 8) {
+                        
+        }
     }
 }
