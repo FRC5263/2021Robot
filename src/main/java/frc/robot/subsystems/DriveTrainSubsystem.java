@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.*;
+import frc.robot.consoleColors;
 
 public class DriveTrainSubsystem extends SubsystemBase {
   
@@ -25,7 +26,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
   /** Creates a new Mechanum Drive Train object*/
   public DriveTrainSubsystem(SpeedController frontRightMotor, SpeedController frontLeftMotor, SpeedController rearRightMotor, SpeedController rearLeftMotor) {
     //outputs to console that a mechanum drive train is being initilized
-    System.out.print("Initializing a new Mechanum Drive Train\n");
+    System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing a new Mechanum Drive Train" + consoleColors.RESET + "\n");
 
     //makes variables for speedcontollers
     this.frontLeftMotor = frontLeftMotor;

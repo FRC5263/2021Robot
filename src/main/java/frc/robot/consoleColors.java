@@ -4,10 +4,12 @@
 
 package frc.robot;
 
+import java.util.logging.ConsoleHandler;
+
 /** use any variable in this class to spice up the terminal output
  * remember to use RESET to reset the formating otherwise it will affect all other cosole outputs
 */
-public class consoleColors {
+public class consoleColors extends Robot{
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
 
