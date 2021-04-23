@@ -6,7 +6,9 @@ package frc.robot;
 
 import java.util.Map;
 
+import edu.wpi.first.hal.simulation.DIODataJNI;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import java.util.HashMap;
 
@@ -41,7 +43,10 @@ public class theRobot {
 
     public void makeRobotId(Integer jumperNum) {
         if(jumperNum == 8) {
-                        
+            DigitalInput channel = new DigitalInput(8);
+            String message = "\u001B[1m\33[47m";
+
+            System.out.print();         
         }
     }
 }
