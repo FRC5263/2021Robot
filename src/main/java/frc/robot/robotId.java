@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import java.util.HashMap;
 
 /** this class is for making a induvidual robot object*/
-public class theRobot {
+public class robotId {
     public static String DRIVETRAIN = "drivetrain";
     private Map<String, Subsystem> subsystems = new HashMap<>();
     
