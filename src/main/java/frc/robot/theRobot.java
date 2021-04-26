@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import frc.robot.consoleColors;
 
 import java.util.Map;
 
@@ -41,12 +42,9 @@ public class theRobot {
         return this.subsystems.containsKey(key);
     }
 
-    public void makeRobotId(Integer jumperNum) {
-        if(jumperNum == 8) {
-            DigitalInput channel = new DigitalInput(8);
-            String message = "\u001B[1m\33[47m";
-
-            System.out.print();         
-        }
+    public DigitalInput makeRobotId(Integer jumperNum) {
+        DigitalInput id = new DigitalInput(jumperNum);
+        System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK_BOLD + "made id on dio jumper 8\n" + consoleColors.RESET);
+        return id;
     }
 }
