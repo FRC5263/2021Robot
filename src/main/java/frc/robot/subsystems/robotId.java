@@ -1,20 +1,17 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
-package frc.robot;
+package frc.robot.subsystems;
 import frc.robot.consoleColors;
 
 import java.util.Map;
 
 import edu.wpi.first.hal.simulation.DIODataJNI;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 import java.util.HashMap;
 
 /** this class is for making a induvidual robot object*/
-public class robotId {
+public class robotId extends SubsystemBase{
     public static String DRIVETRAIN = "drivetrain";
     private Map<String, Subsystem> subsystems = new HashMap<>();
     
@@ -41,10 +38,12 @@ public class robotId {
     public boolean hasSubsystem(String key) {
         return this.subsystems.containsKey(key);
     }
-
-    public DigitalInput makeRobotId(Integer jumperNum) {
+    
+    /**makes a id for a robot
+     * @param jumperNum put the number of the dio connector you want to use
+     */
+    public void makeRobotId(Integer jumperNum) {
         DigitalInput id = new DigitalInput(jumperNum);
         System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK_BOLD + "made id on dio jumper 8\n" + consoleColors.RESET);
-        return id;
     }
 }
