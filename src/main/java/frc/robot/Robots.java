@@ -5,7 +5,7 @@
 package frc.robot;
 
 /** Identifys robot based on a dio juper connection */
-public class RobotIder {
+public class Robots {
     
 
 }
