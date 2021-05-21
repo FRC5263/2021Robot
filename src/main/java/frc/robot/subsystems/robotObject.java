@@ -15,7 +15,7 @@ public class robotObject extends SubsystemBase {
   private Map<String, Subsystem> subsystems = new HashMap<>();
     
     /**creates a new robot */
-    public void Robot(HashMap<String, Subsystem> subsystems) {
+    public void robotObject(HashMap<String, Subsystem> subsystems) {
         this.subsystems.putAll(subsystems);
     }
 
