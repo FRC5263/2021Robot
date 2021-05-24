@@ -12,31 +12,34 @@ import java.util.Map;
 
 public class robotObject extends SubsystemBase {
   public static String DRIVETRAIN = "drivetrain";
+  public static String SHOOTER = "shooter";
+  public static String ARM = "arm";
   private Map<String, Subsystem> subsystems = new HashMap<>();
-    
-    /**creates a new robot */
-    public void robotObject(HashMap<String, Subsystem> subsystems) {
-        this.subsystems.putAll(subsystems);
+
+
+	/**creates a new robot */
+    public robotObject(HashMap<String, Subsystem> subsystems) {
+      this.subsystems.putAll(subsystems);
     }
 
-    /**puts a subsystem into the robot object */
-    public void addSubsystem(String key, Subsystem subsystem) {
-        this.subsystems.put(key, subsystem);
-    }
+  /**puts a subsystem into the robot object */
+  public void addSubsystem(String key, Subsystem subsystem) {
+    this.subsystems.put(key, subsystem);
+  }
     
-    /**locates subsytem in bot object */
-    public Subsystem getSubsystem(String key) throws Exception {
-        Subsystem subsystem = this.subsystems.get(key);
-        if(subsystem != null) {
-            return subsystem;
-        } else {
-            throw new Exception(consoleColors.RED_BOLD + "subsystem does not exist!" + consoleColors.RESET);
-        }
+  /**locates subsytem in bot object */
+  public Subsystem getSubsystem(String key) throws Exception {
+    Subsystem subsystem = this.subsystems.get(key);
+    if(subsystem != null) {
+        return subsystem;
+    } else {
+        throw new Exception(consoleColors.RED_BOLD + "subsystem does not exist!" + consoleColors.RESET);
     }
+  }
 
-    public boolean hasSubsystem(String key) {
-        return this.subsystems.containsKey(key);
-    }
+  public boolean hasSubsystem(String key) {
+    return this.subsystems.containsKey(key);
+  }
 
   @Override
   public void periodic() {

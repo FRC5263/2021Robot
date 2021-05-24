@@ -9,6 +9,9 @@ import java.util.HashMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.subsystems.robotObject;
+import frc.robot.subsystems.DriveTrainSubsystem;
+import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 
 /** Add your docs here. */
 public class Robotsv2 {
@@ -16,12 +19,12 @@ public class Robotsv2 {
     Boolean notSeniorTeam = !dio9.get();
     DigitalInput dio8 = new DigitalInput(8);
     Boolean seniorTeam = !dio8.get();
-
+ 
     public robotObject createNotSeniorTeam() {
         return new robotObject(new HashMap<String, Subsystem>() {
-            {
-
-            }
-        };);
+            {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
+            //{put}
+        }
+        );
     }
 }
