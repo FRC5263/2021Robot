@@ -27,4 +27,8 @@ public class Robotsv2 {
         }
         );
     }
+
+    public static robotObject getRobotByHardware() {
+        return null;
+    }
 }
