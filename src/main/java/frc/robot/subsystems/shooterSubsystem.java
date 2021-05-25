@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.MotorSubsystem;
+import frc.robot.consoleColors;
 
 public class shooterSubsystem extends SubsystemBase {
   SpeedController shooter;
@@ -17,19 +18,22 @@ public class shooterSubsystem extends SubsystemBase {
   
   /**configures a single motor shooter */
   public shooterSubsystem(SpeedController motor) {
+    System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing new single motor shooter" + consoleColors.RESET + "\n");
     this.motor = motor;
   }
-
+  
+  /**configures dual motor shooter */
   public shooterSubsystem(SpeedController rightMotor, SpeedController leftMotor) {
     this.rightMotor = rightMotor;
     this.leftMotor = leftMotor;
   }
 
+  /**shoot using a single motor shooter */
   public void shootSingleMotor(double speed) {
     motor.set(speed);
   }
 
-
+  /**shoot using a dual motor shooter */
   public void shootDualMotor(double speed) {
     rightMotor.set(speed);
     leftMotor.set(speed);
