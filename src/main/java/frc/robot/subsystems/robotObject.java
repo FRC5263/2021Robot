@@ -14,7 +14,7 @@ public class robotObject extends SubsystemBase {
   public static String DRIVETRAIN = "drivetrain";
   public static String SHOOTER = "shooter";
   public static String ARM = "arm";
-  public static String RAMP = "ramp";
+  public static String INTAKE = "INTAKE";
   private Map<String, Subsystem> subsystems = new HashMap<>();
 
 
