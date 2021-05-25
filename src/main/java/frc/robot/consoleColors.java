@@ -8,6 +8,7 @@ import java.util.logging.ConsoleHandler;
 
 /** use any variable in this class to spice up the terminal output
  * remember to use RESET to reset the formating otherwise it will affect all other cosole outputs
+ * after using reset use \n otherwise the next output will be right next to your console message
 */
 public class consoleColors extends Robot{
     // Reset
