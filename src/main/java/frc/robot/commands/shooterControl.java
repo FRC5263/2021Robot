@@ -9,15 +9,18 @@ import frc.robot.subsystems.shooterSubsystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class shooterControl extends CommandBase {
   XboxController controller = new XboxController(0);
   shooterSubsystem shooter;
   GenericHID.Hand hand;
+  boolean dualMotor;
 
   /**creates a new shooterControl */
-  public shooterControl(shooterSubsystem shooter) {
+  public shooterControl(shooterSubsystem shooter, boolean dualMotor) {
     this.shooter = shooter;
+    this.dualMotor = dualMotor;
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +30,13 @@ public class shooterControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double shoot = controller.getRawAxis(3);
+    double shootSpeed = controller.getRawAxis(3);
+    controller.setRumble(RumbleType.kLeftRumble, shoot);
+    if(dualMotor = true) {
+      shooter.shootDualMotor(shootSpeed);
+    } else {
+      shooter.shootSingleMotor(shootSpeed);
+    }
   }
 
   // Called once the command ends or is interrupted.
