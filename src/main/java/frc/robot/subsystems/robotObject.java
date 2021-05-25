@@ -14,6 +14,7 @@ public class robotObject extends SubsystemBase {
   public static String DRIVETRAIN = "drivetrain";
   public static String SHOOTER = "shooter";
   public static String ARM = "arm";
+  public static String RAMP = "ramp";
   private Map<String, Subsystem> subsystems = new HashMap<>();
 
 
@@ -33,7 +34,7 @@ public class robotObject extends SubsystemBase {
     if(subsystem != null) {
         return subsystem;
     } else {
-        throw new Exception(consoleColors.RED_BOLD + "subsystem does not exist!" + consoleColors.RESET);
+        throw new Exception(consoleColors.RED_BOLD + "subsystem does not exist!" + consoleColors.RESET + "\n");
     }
   }
 
