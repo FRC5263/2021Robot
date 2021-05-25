@@ -29,14 +29,14 @@ public class shooterSubsystem extends SubsystemBase {
   }
 
   /**shoot using a single motor shooter */
-  public void shootSingleMotor(double speed) {
-    motor.set(speed);
+  public void shootSingleMotor(double shootSpeed) {
+    motor.set(shootSpeed);
   }
 
   /**shoot using a dual motor shooter */
-  public void shootDualMotor(double speed) {
-    rightMotor.set(speed);
-    leftMotor.set(speed);
+  public void shootDualMotor(double shootSpeed) {
+    rightMotor.set(shootSpeed);
+    leftMotor.set(shootSpeed);
   }
 
 @Override
