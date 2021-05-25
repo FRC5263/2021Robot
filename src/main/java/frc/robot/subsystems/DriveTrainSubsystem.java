@@ -38,13 +38,13 @@ public class DriveTrainSubsystem extends SubsystemBase {
     this.mechanumDrivetrain = new MecanumDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
     //outputs to console that a mechanum drivetrain has been initialized
-    System.out.print("New Mechanum Drive Train initialized\n");
+    System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New Mechanum Drive Train initialized" + consoleColors.RESET + "\n");
   }
 
   /** Creates a new Dual Motor Differential Drive Train */
   public DriveTrainSubsystem(SpeedController rightMotor, SpeedController leftMotor) {
     //outputs to console the a differential drive train is being initialized
-    System.out.print("Initializing a new Dual Motor Differential Drive Train\n");
+    System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing a new Dual Motor Differential Drive Train" + consoleColors.RESET + "\n");
     
     //makes variables for speed controllers
     this.rightMotor = rightMotor;
@@ -54,7 +54,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     this.differentialDrivetrain = new DifferentialDrive(leftMotor, rightMotor);
 
     ///outputs to console that a Differential Drive Train has beed initialized
-    System.out.print("New Dual Motor Differential Drive Train initialized");
+    System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New Dual Motor Differential Drive Train initialized" + consoleColors.RESET + "\n");
   }
 
   /**use this function to make a Mechanum Drive Train move */
