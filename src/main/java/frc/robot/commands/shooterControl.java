@@ -31,7 +31,7 @@ public class shooterControl extends CommandBase {
   @Override
   public void execute() {
     double shootSpeed = controller.getRawAxis(3);
-    controller.setRumble(RumbleType.kLeftRumble, shoot);
+    controller.setRumble(RumbleType.kLeftRumble, shootSpeed);
     if(dualMotor = true) {
       shooter.shootDualMotor(shootSpeed);
     } else {
