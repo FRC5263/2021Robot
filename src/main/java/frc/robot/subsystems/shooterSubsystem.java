@@ -20,12 +20,15 @@ public class shooterSubsystem extends SubsystemBase {
   public shooterSubsystem(SpeedController motor) {
     System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing new single motor shooter" + consoleColors.RESET + "\n");
     this.motor = motor;
+    System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New single motor shooter initialized" + consoleColors.RESET + "\n");
   }
   
   /**configures dual motor shooter */
   public shooterSubsystem(SpeedController rightMotor, SpeedController leftMotor) {
+    System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing a new dual motor shooter" + consoleColors.RESET + "\n");
     this.rightMotor = rightMotor;
     this.leftMotor = leftMotor;
+    System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New dual motor shooter initialized" + consoleColors.RESET + "\n");
   }
 
   /**shoot using a single motor shooter */
