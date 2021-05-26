@@ -28,7 +28,6 @@ public class Robotsv2 {
             {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
             {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
             {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(5)));}
-            {put(robotObject.INTAKE, new intakeSubsystem(new PWMTalonSRX(69)));}
         }
         );
     }
