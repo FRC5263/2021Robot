@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.subsystems.shooterSubsystem;
 import frc.robot.subsystems.armSubsystem;
+import frc.robot.subsystems.intakeSubsystem;
 
 /** Add your docs here. */
 public class Robotsv2 {
@@ -27,7 +28,7 @@ public class Robotsv2 {
             {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
             {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
             {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(5)));}
-            //{put()}
+            {put(robotObject.INTAKE, new intakeSubsystem(new PWMTalonSRX(69)));}
         }
         );
     }
