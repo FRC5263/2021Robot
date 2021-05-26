@@ -5,10 +5,23 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SpeedController;
+import frc.robot.consoleColors;
 
 public class armSubsystem extends SubsystemBase {
-  /** Creates a new armSubsystem. */
-  public armSubsystem() {}
+  SpeedController arm;
+
+  /** creates arm object*/
+  public armSubsystem(SpeedController motor) {
+    System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing new Arm" + consoleColors.RESET + "\n");
+    this.arm = motor;
+    System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New Arm initialized" + consoleColors.RESET + "\n");
+  }
+
+  /**moves arm */
+  public void moveArm(double speed) {
+    arm.set(speed * .5);
+  }
 
   @Override
   public void periodic() {

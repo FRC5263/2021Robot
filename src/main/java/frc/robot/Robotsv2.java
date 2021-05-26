@@ -13,6 +13,7 @@ import frc.robot.subsystems.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.subsystems.shooterSubsystem;
+import frc.robot.subsystems.armSubsystem;
 
 /** Add your docs here. */
 public class Robotsv2 {
@@ -25,7 +26,8 @@ public class Robotsv2 {
         return new robotObject(new HashMap<String, Subsystem>() {
             {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
             {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
-            //{put}
+            {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(5)));}
+            //{put()}
         }
         );
     }
