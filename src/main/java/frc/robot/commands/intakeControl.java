@@ -5,11 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.intakeSubsystem;
 
 public class intakeControl extends CommandBase {
-  /** Creates a new intakeControl. */
-  public intakeControl() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  XboxController controller;
+  intakeSubsystem intake;
+
+  /** Creates a new intakeControl object */
+  public intakeControl(intakeSubsystem intake) {
+    this.intake = intake;
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +23,10 @@ public class intakeControl extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double speed = controller.getRawAxis(2);
+    intake.spinIntake(speed);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
