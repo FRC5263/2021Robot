@@ -5,12 +5,25 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.commands.DifferentialDriveTrainControl;
+import frc.robot.commands.armControl;
+import frc.robot.commands.shooterControl;
+import frc.robot.commands.intakeControl;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.robotObject;
 
 public class robotControl extends CommandBase {
-  /** Creates a new robotControl. */
-  public robotControl() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  XboxController controller;
+  robotObject robot;
+  
+
+  /**this class controlls the whole class */
+  public robotControl(robotObject robot) {
+    this.robot = robot;
   }
+
+  //checks for subsystems in the hashmap
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -18,7 +31,8 @@ public class robotControl extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   // Called once the command ends or is interrupted.
   @Override

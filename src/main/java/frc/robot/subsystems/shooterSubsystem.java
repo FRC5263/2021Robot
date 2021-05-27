@@ -15,6 +15,7 @@ public class shooterSubsystem extends SubsystemBase {
   SpeedController motor;
   SpeedController rightMotor;
   SpeedController leftMotor;
+  SpeedController kicker;
   
   /**configures a single motor shooter */
   public shooterSubsystem(SpeedController motor) {
@@ -24,10 +25,11 @@ public class shooterSubsystem extends SubsystemBase {
   }
   
   /**configures dual motor shooter */
-  public shooterSubsystem(SpeedController rightMotor, SpeedController leftMotor) {
+  public shooterSubsystem(SpeedController rightMotor, SpeedController leftMotor, SpeedController kicker) {
     System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing a new dual motor shooter" + consoleColors.RESET + "\n");
     this.rightMotor = rightMotor;
     this.leftMotor = leftMotor;
+    this.kicker = kicker;
     System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New dual motor shooter initialized" + consoleColors.RESET + "\n");
   }
 
@@ -40,6 +42,10 @@ public class shooterSubsystem extends SubsystemBase {
   public void shootDualMotor(double shootSpeed) {
     rightMotor.set(shootSpeed);
     leftMotor.set(shootSpeed);
+  }
+
+  public void moveKicker() {
+    
   }
 
 @Override

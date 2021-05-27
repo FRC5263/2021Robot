@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.subsystems.shooterSubsystem;
 import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.intakeSubsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.consoleColors;
+import edu.wpi.first.wpilibj.Spark;
 
 /** Add your docs here. */
 public class Robotsv2 {
@@ -25,17 +28,17 @@ public class Robotsv2 {
     DigitalInput dio8 = new DigitalInput(8);
     Boolean seniorTeam = !dio8.get();
  
-    public robotObject createNotSeniorTeam() {
+    public static robotObject createNotSeniorTeam() {
         return new robotObject(
             new HashMap<String, Subsystem>() {
-                {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
-                {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
-                {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(5)));}
+                {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(7), new PWMVictorSPX(10)));}
+                {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(5), new PWMTalonSRX(2), new PWMTalonSRX(4)));}
+                {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(3), new Spark(9)));}
             }
         );
     }
 
-    public robotObject createSeniorTeam() {
+    public static robotObject createSeniorTeam() {
         return new robotObject(
             new HashMap<String, Subsystem>() {
                 {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(1), new PWMTalonSRX(1)));}
@@ -46,6 +49,23 @@ public class Robotsv2 {
     }
 
     public static robotObject getRobotByHardware() {
-        return null;
+        //dio true = not connected, dio false = connected
+        DigitalInput dio9 = new DigitalInput(9);
+        DigitalInput dio8 = new DigitalInput(8);
+        Boolean dio9Connected = !dio9.get();
+        dio9.close();
+        Boolean dio8Connected = !dio8.get();
+        dio8.close();
+
+        if (dio9Connected = false) {
+            System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.GREEN_BOLD + "running on bot 1" + consoleColors.RESET + "\n");
+            return createNotSeniorTeam();
+        } else if (dio8Connected = false) {
+            System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.GREEN_BOLD + "running on bot 2" + consoleColors.RESET + "\n");
+            return createSeniorTeam();
+        } else {
+            System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.GREEN_BOLD + "not a valid robot" + consoleColors.RESET + "\n");
+            return null;
+        }
     }
 }

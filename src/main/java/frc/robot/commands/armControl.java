@@ -25,9 +25,9 @@ public class armControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean leftButtonPressed = controller.getRawButton(4);
-    boolean rightButtonPressed = controller.getRawButton(5);
-    if (leftButtonPressed = true) {
+    boolean armUpButtonPressed = controller.getRawButton(3);
+    boolean rightButtonPressed = controller.getRawButton(0);
+    if (armUpButtonPressed = true) {
       arm.moveArm(-.5);
     } else if (rightButtonPressed = true) {
       arm.moveArm(.5);

@@ -10,17 +10,23 @@ import frc.robot.consoleColors;
 
 public class armSubsystem extends SubsystemBase {
   SpeedController arm;
+  SpeedController finger;
 
   /** creates arm object*/
-  public armSubsystem(SpeedController motor) {
+  public armSubsystem(SpeedController motor, SpeedController finger) {
     System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.BLACK + "Initializing new Arm" + consoleColors.RESET + "\n");
     this.arm = motor;
+    this.finger = finger;
     System.out.print(consoleColors.GREEN_BACKGROUND + consoleColors.BLACK + "New Arm initialized" + consoleColors.RESET + "\n");
   }
 
   /**moves arm */
   public void moveArm(double speed) {
     arm.set(speed * .5);
+  }
+
+  public void moveFinger(double speed) {
+    finger.set(speed);
   }
 
   @Override
