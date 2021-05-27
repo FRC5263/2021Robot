@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PWM;
+
 import java.util.HashMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -24,11 +26,22 @@ public class Robotsv2 {
     Boolean seniorTeam = !dio8.get();
  
     public robotObject createNotSeniorTeam() {
-        return new robotObject(new HashMap<String, Subsystem>() {
-            {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
-            {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
-            {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(5)));}
-        }
+        return new robotObject(
+            new HashMap<String, Subsystem>() {
+                {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(0), new PWMVictorSPX(0)));}
+                {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
+                {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(5)));}
+            }
+        );
+    }
+
+    public robotObject createSeniorTeam() {
+        return new robotObject(
+            new HashMap<String, Subsystem>() {
+                {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(1), new PWMTalonSRX(1)));}
+                {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(1)));}
+                {put(robotObject.INTAKE, new intakeSubsystem(new PWMTalonSRX(1)));}
+            }
         );
     }
 
