@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import frc.robot.commands.ExampleCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.Robot;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Spark;
@@ -36,13 +36,11 @@ public class RobotContainer {
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  private SpeedController rearRightMotor = new Spark(0);
-  private SpeedController frontRightMotor = new Spark(2);
-  private SpeedController backLeftMotor = new Spark(1);
-  private SpeedController frontLeftMotor = new Spark(3);
-  private DriveTrainSubsystem mechanumDrivetrain = new DriveTrainSubsystem(frontRightMotor, frontLeftMotor, rearRightMotor, backLeftMotor);
-  private Command m_teleOp = new MechanumDriveTrainControl(mechanumDrivetrain);
-
+  private SpeedController rightMotor = new PWMTalonSRX(7);
+  private SpeedController leftMotor = new PWMVictorSPX(10);
+  private DriveTrainSubsystem differentialDrivetrain = new DriveTrainSubsystem(rightMotor, leftMotor);
+  private Command m_teleOp = new DifferentialDriveTrainControl(differentialDrivetrain);
+  
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
