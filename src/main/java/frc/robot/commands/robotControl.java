@@ -4,22 +4,33 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.DifferentialDriveTrainControl;
 import frc.robot.commands.armControl;
 import frc.robot.commands.shooterControl;
 import frc.robot.commands.intakeControl;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.robotObject;
 
 public class robotControl extends CommandBase {
   XboxController controller;
   robotObject robot;
-  
+  DriveTrainSubsystem drivetrain;
+  armSubsystem arm;
+  Command arm1 = new armControl(arm);
+  Command driveTrain1 = new DifferentialDriveTrainControl(drivetrain); 
 
   /**this class controlls the whole class */
   public robotControl(robotObject robot) {
     this.robot = robot;
+  }
+
+  public robotControl(DifferentialDriveTrainControl driveTrain, armSubsystem arm) {
+    this.drivetrain = drivetrain;
+    this.arm = arm;
   }
 
   //checks for subsystems in the hashmap
@@ -32,6 +43,8 @@ public class robotControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    arm1.execute();
+    driveTrain1.execute();
   }
 
   // Called once the command ends or is interrupted.
