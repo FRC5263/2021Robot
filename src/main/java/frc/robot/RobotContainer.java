@@ -13,14 +13,20 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.util.WPILibVersion;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.intakeSubsystem;
+import frc.robot.subsystems.shooterSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.Robot;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Spark;
+import frc.robot.commands.robotControl;
 
 
 /**
@@ -36,11 +42,15 @@ public class RobotContainer {
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
-  private SpeedController rightMotor = new PWMTalonSRX(7);
-  private SpeedController leftMotor = new PWMVictorSPX(10);
+  private SpeedController rightMotor = new WPI_TalonSRX(7);
+  private SpeedController leftMotor = new WPI_VictorSPX(10);
+  //private SpeedController leftShooter = new WPI_TalonSRX(5);
+  //private SpeedController rightShooter = new WPI_TalonSRX(2);
+  private SpeedController
   private DriveTrainSubsystem differentialDrivetrain = new DriveTrainSubsystem(rightMotor, leftMotor);
-  private Command m_teleOp = new DifferentialDriveTrainControl(differentialDrivetrain);
-  
+  //private Command m_teleOp = new DifferentialDriveTrainControl(differentialDrivetrain);
+  //private shooterSubsystem shooter = new shooterSubsystem(); 
+  private robotControl robot = new robotControl(differentialDrivetrain, )
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

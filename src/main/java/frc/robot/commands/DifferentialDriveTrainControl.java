@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class DifferentialDriveTrainControl extends CommandBase {
   DriveTrainSubsystem differentialDriveTrain;
@@ -15,11 +16,11 @@ public class DifferentialDriveTrainControl extends CommandBase {
 
 
   /** Creates a new DifferentialControl. */
-  public DifferentialDriveTrainControl(DriveTrainSubsystem differentialDriveTrain) {
-    this.differentialDriveTrain  = differentialDriveTrain;
+  public DifferentialDriveTrainControl(DriveTrainSubsystem drivetrain) {
+    this.differentialDriveTrain  = drivetrain;
   }
 
-  // Called when the command is initially scheduled.
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
