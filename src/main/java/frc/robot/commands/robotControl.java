@@ -54,9 +54,9 @@ public class robotControl extends CommandBase {
 
     //--checks if the buttons are pressed down
     if (armUpButtonPressed == true) {
-      arm.moveArm(-.5);
+      arm.moveArm(-.15);
     } else if (armDownButtonPressed == true) {
-      arm.moveArm(.5);
+      arm.moveArm(.15);
     } else if (armDownButtonPressed == true && (armUpButtonPressed == true)) {
       arm.moveArm(0);
     }
