@@ -29,7 +29,7 @@ public class DifferentialDriveTrainControl extends CommandBase {
   public void execute() {
     double leftSpeed = controller0.getRawAxis(1);
     double rightSpeed = controller0.getRawAxis(5);
-    differentialDriveTrain.DriveDifferential(leftSpeed, rightSpeed);
+    differentialDriveTrain.DriveDifferential(leftSpeed * -1, rightSpeed * -1);
 
   }
 

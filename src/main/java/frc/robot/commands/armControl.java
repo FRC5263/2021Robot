@@ -26,13 +26,25 @@ public class armControl extends CommandBase {
   @Override
   public void execute() {
     boolean armUpButtonPressed = controller.getRawButton(3);
-    boolean rightButtonPressed = controller.getRawButton(0);
+    boolean armDownButtonPressed = controller.getRawButton(0);
+    boolean fingerOpenButtonPressed = controller.getRawButton(4);
+    boolean fingerCloseButtonPressed = controller.getRawButton(5);
+
+    //checks if the buttons are pressed down
     if (armUpButtonPressed = true) {
       arm.moveArm(-.5);
-    } else if (rightButtonPressed = true) {
+    } else if (armDownButtonPressed = true) {
       arm.moveArm(.5);
-    } else {
+    } else if (armDownButtonPressed = true && (armUpButtonPressed = true)) {
       arm.moveArm(0);
+    }
+
+    if (fingerOpenButtonPressed = true) {
+      arm.moveFinger(.5);
+    } else if (fingerCloseButtonPressed = true) {
+      arm.moveFinger(-.5);
+    } else if (fingerCloseButtonPressed = true && (fingerOpenButtonPressed = true)) {
+
     }
   }
 

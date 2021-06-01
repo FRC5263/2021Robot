@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.util.WPILibVersion;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.intakeSubsystem;
 import frc.robot.subsystems.shooterSubsystem;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
@@ -27,6 +28,7 @@ import frc.robot.Robot;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Spark;
 import frc.robot.commands.robotControl;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 
 /**
@@ -41,16 +43,26 @@ public class RobotContainer {
 
   private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+  //declares variables for dio 9 and 8 and then checks if there is somthing plugged in
+  private DigitalInput dio9 = new DigitalInput(9);
+  private DigitalInput dio8 = new DigitalInput(8);
+  Boolean seniorTeam = dio8.get();
+  Boolean notSeniorTeam = dio9.get(); {} {
+  
+  if (seniorTeam = true) {
+    
+  }
+
+  }
+
 
   private SpeedController rightMotor = new WPI_TalonSRX(7);
   private SpeedController leftMotor = new WPI_VictorSPX(10);
-  //private SpeedController leftShooter = new WPI_TalonSRX(5);
-  //private SpeedController rightShooter = new WPI_TalonSRX(2);
-  private SpeedController
   private DriveTrainSubsystem differentialDrivetrain = new DriveTrainSubsystem(rightMotor, leftMotor);
-  //private Command m_teleOp = new DifferentialDriveTrainControl(differentialDrivetrain);
-  //private shooterSubsystem shooter = new shooterSubsystem(); 
-  private robotControl robot = new robotControl(differentialDrivetrain, )
+  private DifferentialDriveTrainControl driveTrainControl = new DifferentialDriveTrainControl(differentialDrivetrain);
+  private armSubsystem arm = new armSubsystem(new PWMTalonSRX(3), new Spark(9));
+  private armControl armController = new armControl(arm);
+  private Command m_teleOp = new robotControl(driveTrainControl, armController);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

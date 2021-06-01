@@ -18,17 +18,15 @@ import frc.robot.subsystems.robotObject;
 public class robotControl extends CommandBase {
   XboxController controller;
   robotObject robot;
-  DriveTrainSubsystem drivetrain;
-  armSubsystem arm;
-  Command arm1 = new armControl(arm);
-  Command driveTrain1 = new DifferentialDriveTrainControl(drivetrain); 
+  DifferentialDriveTrainControl drivetrain;
+  armControl arm;
 
   /**this class controlls the whole class */
   public robotControl(robotObject robot) {
     this.robot = robot;
   }
 
-  public robotControl(DifferentialDriveTrainControl driveTrain, armSubsystem arm) {
+  public robotControl(DifferentialDriveTrainControl driveTrain, armControl arm) {
     this.drivetrain = drivetrain;
     this.arm = arm;
   }
@@ -43,8 +41,8 @@ public class robotControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    arm1.execute();
-    driveTrain1.execute();
+    arm.execute();
+    drivetrain.execute();
   }
 
   // Called once the command ends or is interrupted.
