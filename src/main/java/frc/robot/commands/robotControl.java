@@ -61,11 +61,13 @@ public class robotControl extends CommandBase {
       arm.moveArm(0);
     }
 
-    if (fingerOpenButtonPressed = true) {
+    if (fingerOpenButtonPressed == true) {
       arm.moveFinger(.5);
-    } else if (fingerCloseButtonPressed = true) {
+    } else if (fingerCloseButtonPressed == true) {
       arm.moveFinger(-.5);
-    } else if (fingerCloseButtonPressed = true && (fingerOpenButtonPressed = true)) {
+    } else if (fingerCloseButtonPressed == true && (fingerOpenButtonPressed == true)) {
+      arm.moveFinger(0);
+    } else if (fingerCloseButtonPressed == false && (fingerOpenButtonPressed == false)) {
       arm.moveFinger(0);
     }
   }
