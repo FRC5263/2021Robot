@@ -46,13 +46,8 @@ public class RobotContainer {
   //declares variables for dio 9 and 8 and then checks if there is somthing plugged in
   private DigitalInput dio9 = new DigitalInput(9);
   private DigitalInput dio8 = new DigitalInput(8);
-  Boolean seniorTeam = dio8.get();
-  Boolean notSeniorTeam = dio9.get(); {} {
   
   if (seniorTeam = true) {
-    
-  }
-
   }
 
 
@@ -60,9 +55,9 @@ public class RobotContainer {
   private SpeedController leftMotor = new WPI_VictorSPX(10);
   private DriveTrainSubsystem differentialDrivetrain = new DriveTrainSubsystem(rightMotor, leftMotor);
   private DifferentialDriveTrainControl driveTrainControl = new DifferentialDriveTrainControl(differentialDrivetrain);
-  private armSubsystem arm = new armSubsystem(new PWMTalonSRX(3), new Spark(9));
+  private armSubsystem arm = new armSubsystem(new WPI_TalonSRX(3), new Spark(9));
   private armControl armController = new armControl(arm);
-  private Command m_teleOp = new robotControl(driveTrainControl, armController);
+  private Command m_teleOp = new robotControl(differentialDrivetrain, arm);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
