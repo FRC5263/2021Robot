@@ -1,9 +1,5 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.DifferentialDriveTrainControl;
@@ -11,27 +7,40 @@ import frc.robot.commands.armControl;
 import frc.robot.commands.shooterControl;
 import frc.robot.commands.intakeControl;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.armSubsystem;
+import frc.robot.subsystems.intakeSubsystem;
 import frc.robot.subsystems.robotObject;
+import frc.robot.subsystems.shooterSubsystem;
 
 public class robotControl extends CommandBase {
   XboxController controller = new XboxController(0);
   robotObject robot;
   DriveTrainSubsystem driveTrain;
   armSubsystem arm;
+  shooterSubsystem shooter;
+  Boolean dualMotorShooter;
+  intakeSubsystem intake;
+  Timer timer = new Timer();
 
-  /**this class controlls the whole class */
+  /**this class controls a robotObject */
   public robotControl(robotObject robot) {
     this.robot = robot;
   }
 
+  /**this class controls a driveTrain and arm */
   public robotControl(DriveTrainSubsystem driveTrain, armSubsystem arm) {
     this.driveTrain = driveTrain;
     this.arm = arm;
   }
 
-  //checks for subsystems in the hashmap
+  public robotControl(DriveTrainSubsystem driveTrain, armSubsystem arm, shooterSubsystem shooter, Boolean dualMotorShooter) {
+    this.driveTrain = driveTrain;
+    this.arm = arm;
+    this.shooter = shooter;
+    this.dualMotorShooter = dualMotorShooter;
+  }
 
 
   // Called when the command is initially scheduled.
@@ -52,12 +61,15 @@ public class robotControl extends CommandBase {
     boolean fingerOpenButtonPressed = controller.getRawButton(5);
     boolean fingerCloseButtonPressed = controller.getRawButton(6);
 
-    //--checks if the buttons are pressed down
+    //--checks if the buttons for controlling the arm are being pressed
     if (armUpButtonPressed == true) {
       arm.moveArm(-.15);
+      shooter.shootDualMotor(-1);
     } else if (armDownButtonPressed == true) {
       arm.moveArm(.15);
     } else if (armDownButtonPressed == true && (armUpButtonPressed == true)) {
+      arm.moveArm(0);
+    } else if (armDownButtonPressed == false && (armUpButtonPressed == false)) {
       arm.moveArm(0);
     }
 
@@ -69,6 +81,32 @@ public class robotControl extends CommandBase {
       arm.moveFinger(0);
     } else if (fingerCloseButtonPressed == false && (fingerOpenButtonPressed == false)) {
       arm.moveFinger(0);
+    }
+
+    //shooter 
+    double shootSpeed = controller.getRawAxis(2);
+    double kickerActuate = controller.getRawAxis(3);
+
+    //--checks for inputs and exectutes code
+    if(dualMotorShooter == true) {
+      shooter.shootDualMotor(shootSpeed);
+      controller.setRumble(RumbleType.kLeftRumble, shootSpeed*1.2);
+    } else {
+      shooter.shootSingleMotor(shootSpeed);
+      controller.setRumble(RumbleType.kLeftRumble, shootSpeed*1.2);
+    }
+
+
+    if (kickerActuate > .2) {
+      timer.start();
+      //--times kicker motor
+      while (timer.hasElapsed(.1) == false) {
+        shooter.moveKicker(1);
+      } while (timer.hasElapsed(.1) == true && (timer.hasElapsed(.2) == false)) {
+        shooter.moveKicker(-1);
+      } if (timer.hasElapsed(.25) == true) {
+        timer.stop();
+      }
     }
   }
 
