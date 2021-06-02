@@ -29,6 +29,7 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Spark;
 import frc.robot.commands.robotControl;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.Robotsv2;
 
 
 /**
@@ -38,26 +39,14 @@ import edu.wpi.first.wpilibj.DigitalInput;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   //declares variables for dio 9 and 8 and then checks if there is somthing plugged in
   private DigitalInput dio9 = new DigitalInput(9);
   private DigitalInput dio8 = new DigitalInput(8);
+  private Boolean seniorTeam = dio8.get();
+  private Boolean notSeniorTeam = dio9.get();
+
   
-  if (seniorTeam = true) {
-  }
-
-
-  private SpeedController rightMotor = new WPI_TalonSRX(7);
-  private SpeedController leftMotor = new WPI_VictorSPX(10);
-  private DriveTrainSubsystem differentialDrivetrain = new DriveTrainSubsystem(rightMotor, leftMotor);
-  private DifferentialDriveTrainControl driveTrainControl = new DifferentialDriveTrainControl(differentialDrivetrain);
-  private armSubsystem arm = new armSubsystem(new WPI_TalonSRX(3), new Spark(9));
-  private armControl armController = new armControl(arm);
-  private Command m_teleOp = new robotControl(differentialDrivetrain, arm);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -87,11 +76,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
   public Command getTeleOpCommand() {
     return m_teleOp;
   }
 }
-
-

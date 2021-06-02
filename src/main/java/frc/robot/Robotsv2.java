@@ -57,15 +57,24 @@ public class Robotsv2 {
         Boolean dio8Connected = !dio8.get();
         dio8.close();
 
-        if (dio9Connected = false) {
+        if (dio9Connected == false) {
             System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.GREEN_BOLD + "running on bot 1" + consoleColors.RESET + "\n");
             return createNotSeniorTeam();
-        } else if (dio8Connected = false) {
+        } else if (dio8Connected == false) {
             System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.GREEN_BOLD + "running on bot 2" + consoleColors.RESET + "\n");
             return createSeniorTeam();
         } else {
             System.out.print(consoleColors.WHITE_BACKGROUND + consoleColors.GREEN_BOLD + "not a valid robot" + consoleColors.RESET + "\n");
             return null;
         }
+    }
+
+    public static Boolean getSeniorBot() {
+        DigitalInput dio8 = new DigitalInput(8);
+        return null;
+    }
+
+    public static Boolean getShaqBot() {
+        return null;
     }
 }
