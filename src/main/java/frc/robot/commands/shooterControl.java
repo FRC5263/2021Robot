@@ -32,7 +32,7 @@ public class shooterControl extends CommandBase {
   public void execute() {
     double shootSpeed = controller.getRawAxis(3);
     controller.setRumble(RumbleType.kLeftRumble, shootSpeed);
-    if(dualMotor = true) {
+    if(dualMotor == true) {
       shooter.shootDualMotor(shootSpeed);
     } else {
       shooter.shootSingleMotor(shootSpeed);

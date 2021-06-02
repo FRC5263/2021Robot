@@ -44,8 +44,8 @@ public class shooterSubsystem extends SubsystemBase {
     leftMotor.set(shootSpeed);
   }
 
-  public void moveKicker() {
-    
+  public void moveKicker(double speed) {
+    kicker.set(speed);
   }
 
 @Override

@@ -11,12 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.intakeSubsystem;
-import frc.robot.subsystems.robotObject;
 import frc.robot.subsystems.shooterSubsystem;
 
 public class robotControl extends CommandBase {
   XboxController controller = new XboxController(0);
-  robotObject robot;
   DriveTrainSubsystem driveTrain;
   armSubsystem arm;
   shooterSubsystem shooter;
@@ -24,10 +22,6 @@ public class robotControl extends CommandBase {
   intakeSubsystem intake;
   Timer timer = new Timer();
 
-  /**this class controls a robotObject */
-  public robotControl(robotObject robot) {
-    this.robot = robot;
-  }
 
   /**this class controls a driveTrain and arm */
   public robotControl(DriveTrainSubsystem driveTrain, armSubsystem arm) {
@@ -35,6 +29,7 @@ public class robotControl extends CommandBase {
     this.arm = arm;
   }
 
+  /** this class controls a shaq bot hardware config */
   public robotControl(DriveTrainSubsystem driveTrain, armSubsystem arm, shooterSubsystem shooter, Boolean dualMotorShooter) {
     this.driveTrain = driveTrain;
     this.arm = arm;
@@ -42,7 +37,12 @@ public class robotControl extends CommandBase {
     this.dualMotorShooter = dualMotorShooter;
   }
 
-
+  public robotControl(DriveTrainSubsystem driveTrain, intakeSubsystem intake, shooterSubsystem shooter, Boolean dualMotorShooter) {
+    this.driveTrain = driveTrain;
+    this.intake = intake;
+    this.shooter = shooter;
+    this.dualMotorShooter = dualMotorShooter;
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -74,6 +74,8 @@ public class robotControl extends CommandBase {
         System.out.println("Going Down");
       } else if (armDownButtonPressed == true && (armUpButtonPressed == true)) {
         arm.moveArm(0);
+      } else if (armUpButtonPressed == false && (armUpButtonPressed == false)) {
+        arm.moveArm(0);
       }
     }
       
@@ -100,7 +102,7 @@ public class robotControl extends CommandBase {
       controller.setRumble(RumbleType.kLeftRumble, shootSpeed*1.2);
     }
 
-
+    //--moves kicker
     if (kickerActuate > .2) {
       timer.start();
       //--times kicker motor
@@ -111,6 +113,20 @@ public class robotControl extends CommandBase {
       } if (timer.hasElapsed(.25) == true) {
         timer.stop();
       }
+    }
+
+    //intake
+    double intakeIn = controller.getPOV(0);
+    double intakeOut = controller.getPOV(180);
+
+    if (controller.getPOV() == 0) {
+      intake.spinIntake(1);
+    } else if (controller.getPOV() == 180) {
+      intake.spinIntake(-1);
+    } else if (controller.getPOV() != 180 && (controller.getPOV() != 0)) {
+      intake.spinIntake(0);
+    } else if (controller.getPOV() == 180 && (controller.getPOV() == 0)) {
+      intake.spinIntake(0);
     }
   }
 

@@ -29,7 +29,7 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Spark;
 import frc.robot.commands.robotControl;
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.Robotsv2;
+import frc.robot.robotsV3;
 
 
 /**
@@ -46,6 +46,7 @@ public class RobotContainer {
   private Boolean seniorTeam = dio8.get();
   private Boolean notSeniorTeam = dio9.get();
 
+  private Command m_teleOp = robotsV3.getBot();
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -77,6 +78,6 @@ public class RobotContainer {
     return null;
   }
   public Command getTeleOpCommand() {
-    return m_teleOp;
+    return null;
   }
 }
