@@ -46,10 +46,6 @@ public class RobotContainer {
   private Boolean seniorTeam = dio8.get();
   private Boolean notSeniorTeam = dio9.get();
 
-  private DriveTrainSubsystem driveTrain = new DriveTrainSubsystem(new PWMTalonSRX(7), new PWMVictorSPX(10));
-  private armSubsystem arm = new armSubsystem(new Spark(8), new Spark(9));
-  private Command m_teleOp = new robotControl(driveTrain, arm);
-
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
