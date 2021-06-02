@@ -33,7 +33,7 @@ public class Robotsv2 {
             new HashMap<String, Subsystem>() {
                 {put(robotObject.DRIVETRAIN, new DriveTrainSubsystem(new PWMTalonSRX(7), new PWMVictorSPX(10)));}
                 {put(robotObject.SHOOTER, new shooterSubsystem(new PWMTalonSRX(5), new PWMTalonSRX(2), new PWMTalonSRX(4)));}
-                {put(robotObject.ARM, new armSubsystem(new PWMTalonSRX(3), new Spark(9)));}
+                {put(robotObject.ARM, new armSubsystem(new Spark(8), new Spark(9)));}
             }
         );
     }

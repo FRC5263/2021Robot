@@ -53,14 +53,21 @@ public class robotControl extends CommandBase {
     boolean fingerCloseButtonPressed = controller.getRawButton(6);
 
     //--checks if the buttons are pressed down
-    if (armUpButtonPressed == true) {
-      arm.moveArm(-.15);
-    } else if (armDownButtonPressed == true) {
-      arm.moveArm(.15);
-    } else if (armDownButtonPressed == true && (armUpButtonPressed == true)) {
-      arm.moveArm(0);
-    }
 
+    if(armUpButtonPressed == false && (armDownButtonPressed == false)) {
+      arm.moveArm(0);
+    } else {
+      if (armUpButtonPressed == true) {
+        arm.moveArm(-1);
+        System.out.println("Going Up");
+      } else if (armDownButtonPressed == true) {
+        arm.moveArm(1);
+        System.out.println("Going Down");
+      } else if (armDownButtonPressed == true && (armUpButtonPressed == true)) {
+        arm.moveArm(0);
+      }
+    }
+      
     if (fingerOpenButtonPressed == true) {
       arm.moveFinger(.5);
     } else if (fingerCloseButtonPressed == true) {
