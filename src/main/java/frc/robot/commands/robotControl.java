@@ -94,9 +94,9 @@ public class robotControl extends CommandBase {
       }
 
       //arm
-      arm.moveArm(controller.getRawAxis(1));
-      boolean fingerOpenButtonPressed = controller.getRawButton(5);
-      boolean fingerCloseButtonPressed = controller.getRawButton(6);
+      arm.moveArm(controller.getRawAxis(1)*-1);
+      boolean fingerOpenButtonPressed = controller.getRawButton(6);
+      boolean fingerCloseButtonPressed = controller.getRawButton(5);
 
       //--checks if the button for the finger is pressed
       
