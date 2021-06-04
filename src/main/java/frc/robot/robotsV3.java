@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Spark;
 import frc.robot.commands.robotControl;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -31,10 +32,10 @@ public class robotsV3 extends Robot{
     public static robotControl getBot() {
         if (dio9.get() == false) {
             System.out.print("running on dio 9 config");
-            return new robotControl(new DriveTrainSubsystem(new Spark(8), new Spark(0)));
-        } else if (dio8.get() == false) {
-            System.out.print("running on dio 9 config");
             return new robotControl(new DriveTrainSubsystem(new WPI_TalonSRX(7), new WPI_VictorSPX(10)), new armSubsystem(new Spark(8), new Spark(9)), new shooterSubsystem(new WPI_TalonSRX(5), new WPI_TalonSRX(2), new WPI_TalonSRX(4)), true);
+        } else if (dio8.get() == false) {
+            System.out.print("running on dio 8 config");
+            return new robotControl(new DriveTrainSubsystem(new Spark(8), new Spark(0)), new intakeSubsystem(new Jaguar(3)), new shooterSubsystem(new Spark(7)), false);
         } else if (dio8.get() == true && (dio9.get() == true)) {
             System.out.print("not a recognised robot");
             return null;

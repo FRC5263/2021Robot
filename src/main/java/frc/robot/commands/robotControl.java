@@ -1,4 +1,5 @@
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -15,13 +16,19 @@ import frc.robot.subsystems.shooterSubsystem;
 
 public class robotControl extends CommandBase {
   XboxController controller = new XboxController(0);
+  Joystick driver = new Joystick(1);
   DriveTrainSubsystem driveTrain;
   armSubsystem arm;
   shooterSubsystem shooter;
   Boolean dualMotorShooter;
   intakeSubsystem intake;
   Timer timer = new Timer();
+  private int config;
 
+
+  public robotControl(DriveTrainSubsystem driveTrain) {
+    this.driveTrain = driveTrain;
+  }
 
   /**this class controls a driveTrain and arm */
   public robotControl(DriveTrainSubsystem driveTrain, armSubsystem arm) {
@@ -35,6 +42,7 @@ public class robotControl extends CommandBase {
     this.arm = arm;
     this.shooter = shooter;
     this.dualMotorShooter = dualMotorShooter;
+    config = 1;
   }
 
   public robotControl(DriveTrainSubsystem driveTrain, intakeSubsystem intake, shooterSubsystem shooter, Boolean dualMotorShooter) {
@@ -42,6 +50,7 @@ public class robotControl extends CommandBase {
     this.intake = intake;
     this.shooter = shooter;
     this.dualMotorShooter = dualMotorShooter;
+    config = 2;
   }
   // Called when the command is initially scheduled.
   @Override
@@ -51,84 +60,71 @@ public class robotControl extends CommandBase {
   @Override
   public void execute() {
     //drivetrain
-    double leftSpeed = controller.getRawAxis(1);
-    double rightSpeed = controller.getRawAxis(5);
-    driveTrain.DriveDifferential(leftSpeed * -1, rightSpeed * -1);
+    double leftSpeed = driver.getRawAxis(1);
+    double rightSpeed = driver.getRawAxis(5);
 
-    //arm
-    boolean armUpButtonPressed = controller.getRawButton(4);
-    boolean armDownButtonPressed = controller.getRawButton(1);
-    boolean fingerOpenButtonPressed = controller.getRawButton(5);
-    boolean fingerCloseButtonPressed = controller.getRawButton(6);
+    //checks for robotControl config, one is robotcontrol drivetrain, arm, and dualmotor shooter. config 2 is drivetrain, intake, singlemotor shooter
+    if (config == 1) {
 
-    //--checks if the buttons are pressed down
+      //drivetrain
+      driveTrain.DriveDifferential(leftSpeed * -1, rightSpeed * -1);
 
-    if(armUpButtonPressed == false && (armDownButtonPressed == false)) {
-      arm.moveArm(0);
-    } else {
-      if (armUpButtonPressed == true) {
-        arm.moveArm(-1);
-        System.out.println("Going Up");
-      } else if (armDownButtonPressed == true) {
-        arm.moveArm(1);
-        System.out.println("Going Down");
-      } else if (armDownButtonPressed == true && (armUpButtonPressed == true)) {
-        arm.moveArm(0);
-      } else if (armUpButtonPressed == false && (armUpButtonPressed == false)) {
-        arm.moveArm(0);
+      //shooter 
+      double shootSpeed = controller.getRawAxis(2);
+
+      //--checks for inputs and exectutes code
+      if(dualMotorShooter == true) {
+        shooter.shootDualMotor(shootSpeed*-1);
+        controller.setRumble(RumbleType.kLeftRumble, shootSpeed*-1.2);
+      } else {
+        shooter.shootSingleMotor(shootSpeed);
+        controller.setRumble(RumbleType.kLeftRumble, shootSpeed*-1.2);
       }
-    }
+
+      //shooter actuator
       
-    if (fingerOpenButtonPressed == true) {
-      arm.moveFinger(.5);
-    } else if (fingerCloseButtonPressed == true) {
-      arm.moveFinger(-.5);
-    } else if (fingerCloseButtonPressed == true && (fingerOpenButtonPressed == true)) {
-      arm.moveFinger(0);
-    } else if (fingerCloseButtonPressed == false && (fingerOpenButtonPressed == false)) {
-      arm.moveFinger(0);
-    }
-
-    //shooter 
-    double shootSpeed = controller.getRawAxis(2);
-    double kickerActuate = controller.getRawAxis(3);
-
-    //--checks for inputs and exectutes code
-    if(dualMotorShooter == true) {
-      shooter.shootDualMotor(shootSpeed);
-      controller.setRumble(RumbleType.kLeftRumble, shootSpeed*1.2);
-    } else {
-      shooter.shootSingleMotor(shootSpeed);
-      controller.setRumble(RumbleType.kLeftRumble, shootSpeed*1.2);
-    }
-
-    //--moves kicker
-    if (kickerActuate > .2) {
-      timer.start();
-      //--times kicker motor
-      while (timer.hasElapsed(.1) == false) {
+      if (controller.getRawButton(4) == true) {
         shooter.moveKicker(1);
-      } while (timer.hasElapsed(.1) == true && (timer.hasElapsed(.2) == false)) {
+      } else if (controller.getRawButton(1) == true) {
         shooter.moveKicker(-1);
-      } if (timer.hasElapsed(.25) == true) {
-        timer.stop();
+      } else if (controller.getRawButton(1) == true && (controller.getRawButton(4) == true)) {
+        shooter.moveKicker(0);
+      } else if (controller.getRawButton(1) == false && (controller.getRawButton(4) == false)) {
+        shooter.moveKicker(0);
       }
-    }
 
-    //intake
-    double intakeIn = controller.getPOV(0);
-    double intakeOut = controller.getPOV(180);
+      //arm
+      arm.moveArm(controller.getRawAxis(1));
+      boolean fingerOpenButtonPressed = controller.getRawButton(5);
+      boolean fingerCloseButtonPressed = controller.getRawButton(6);
 
-    if (controller.getPOV() == 0) {
-      intake.spinIntake(1);
-    } else if (controller.getPOV() == 180) {
-      intake.spinIntake(-1);
-    } else if (controller.getPOV() != 180 && (controller.getPOV() != 0)) {
-      intake.spinIntake(0);
-    } else if (controller.getPOV() == 180 && (controller.getPOV() == 0)) {
-      intake.spinIntake(0);
+      //--checks if the button for the finger is pressed
+      
+      if (fingerOpenButtonPressed == true) {
+       arm.moveFinger(.5);
+      } else if (fingerCloseButtonPressed == true) {
+        arm.moveFinger(-.5);
+      } else if (fingerCloseButtonPressed == true && (fingerOpenButtonPressed == true)) {
+        arm.moveFinger(0);
+      } else if (fingerCloseButtonPressed == false && (fingerOpenButtonPressed == false)) {
+        arm.moveFinger(0);
+      }
+    } else if (config == 2) {
+
+      //drivetrain
+      driveTrain.DriveDifferential(leftSpeed * 1, rightSpeed * 1);
+
+      //shooter
+      shooter.shootSingleMotor(controller.getRawAxis(3));
+      controller.setRumble(RumbleType.kLeftRumble, controller.getRawAxis(3));
+
+      //intake
+      
+      controller.setRumble(RumbleType.kRightRumble, controller.getRawAxis(2)*2);
+      intake.spinIntake(controller.getRawAxis(5));
     }
   }
+
 
   // Called once the command ends or is interrupted.
   @Override

@@ -40,13 +40,9 @@ import frc.robot.robotsV3;
  */
 public class RobotContainer {
 
-  //declares variables for dio 9 and 8 and then checks if there is somthing plugged in
-  private DigitalInput dio9 = new DigitalInput(9);
-  private DigitalInput dio8 = new DigitalInput(8);
-  private Boolean seniorTeam = dio8.get();
-  private Boolean notSeniorTeam = dio9.get();
-
   private Command m_teleOp = robotsV3.getBot();
+  //private Command m_teleOp = new robotControl(new DriveTrainSubsystem(new WPI_TalonSRX(7), new WPI_VictorSPX(10)), new armSubsystem(new Spark(8), new Spark(9)), new shooterSubsystem(new WPI_TalonSRX(5), new WPI_TalonSRX(2), new WPI_TalonSRX(4)), true);
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -78,6 +74,6 @@ public class RobotContainer {
     return null;
   }
   public Command getTeleOpCommand() {
-    return null;
+    return m_teleOp;
   }
 }
